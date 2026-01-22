@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="posts">
+    <h2>Posts tagged with "{{ .Title }}"</h2>
+    {{ if .Pages }}
+    <div class="tagged-posts">
+        {{ range .Pages }}
+        <div class="post-summary">
+            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <p class="meta">Posted: {{ .Date.Format "2006-01-02" }}</p>
+            <p>{{ .Summary }}</p>
+            {{ if .Truncated }}
+            <p><a href="{{ .Permalink }}">Read more...</a></p>
+            {{ end }}
+            <hr>
+        </div>
+        {{ end }}
+    </div>
+    {{ else }}
+    <p>No posts found with this tag.</p>
+    {{ end }}
+    
+    <p><a href="/tags/">← Back to All Tags</a></p>
+</div>
+{{ end }}

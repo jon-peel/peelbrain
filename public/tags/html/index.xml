@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Html on Peel Brain</title>
+    <link>http://localhost:1313/tags/html/</link>
+    <description>Recent content in Html on Peel Brain</description>
+    <generator>Hugo</generator>
+    <language>en-za</language>
+    <lastBuildDate>Thu, 15 Jan 2026 09:15:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Beauty of Retro Web Design</title>
+      <link>http://localhost:1313/posts/2026-01-15-retro-web-design/</link>
+      <pubDate>Thu, 15 Jan 2026 09:15:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/2026-01-15-retro-web-design/</guid>
+      <description>&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;&#xA;&lt;h2 id=&#34;headline-1&#34;&gt;&#xA;The Beauty of Retro Web Design&#xA;&lt;/h2&gt;&#xA;&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;&#xA;&lt;p&gt;&#xA;There&amp;#39;s something charming about early web design that modern sites often lack.&lt;/p&gt;&#xA;&lt;div id=&#34;outline-container-headline-2&#34; class=&#34;outline-3&#34;&gt;&#xA;&lt;h3 id=&#34;headline-2&#34;&gt;&#xA;What Made Early Web Special?&#xA;&lt;/h3&gt;&#xA;&lt;div id=&#34;outline-text-headline-2&#34; class=&#34;outline-text-3&#34;&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Simplicity&lt;/strong&gt;: No JavaScript frameworks, just HTML and basic CSS&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Personality&lt;/strong&gt;: Geocities, Angelfire sites showed individual creativity&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Performance&lt;/strong&gt;: Pages loaded instantly on dial-up connections&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;outline-container-headline-3&#34; class=&#34;outline-3&#34;&gt;&#xA;&lt;h3 id=&#34;headline-3&#34;&gt;&#xA;Design Elements We Miss&#xA;&lt;/h3&gt;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;outline-container-headline-4&#34; class=&#34;outline-3&#34;&gt;&#xA;&lt;h3 id=&#34;headline-4&#34;&gt;&#xA;Grey Backgrounds&#xA;&lt;/h3&gt;&#xA;&lt;div id=&#34;outline-text-headline-4&#34; class=&#34;outline-text-3&#34;&gt;&#xA;&lt;p&gt;The classic #C0C0C0 background was the canvas of choice.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;outline-container-headline-5&#34; class=&#34;outline-3&#34;&gt;&#xA;&lt;h3 id=&#34;headline-5&#34;&gt;&#xA;Blue Links&#xA;&lt;/h3&gt;&#xA;&lt;div id=&#34;outline-text-headline-5&#34; class=&#34;outline-text-3&#34;&gt;&#xA;&lt;p&gt;Unvisited links in blue (#0000FF), visited in magenta (#800080).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,12 @@
+baseURL: https://peelbrain.com/
+languageCode: en-za
+title: Peel Brain
+
+taxonomies:
+  tag: tags
+  category: categories
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

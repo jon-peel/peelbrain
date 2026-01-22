@@ -1,0 +1,48 @@
+---
+title: "The Beauty of Retro Web Design"
+date: 2026-01-15T09:15:00+03:00
+draft: false
+tags: ["web-design", "retro", "html", "css", "nostalgia"]
+---
+
+* The Beauty of Retro Web Design
+
+There's something charming about early web design that modern sites often lack.
+
+** What Made Early Web Special?
+
+- *Simplicity*: No JavaScript frameworks, just HTML and basic CSS
+- *Personality*: Geocities, Angelfire sites showed individual creativity
+- *Performance*: Pages loaded instantly on dial-up connections
+
+** Design Elements We Miss
+
+** Grey Backgrounds
+The classic #C0C0C0 background was the canvas of choice.
+
+** Blue Links
+Unvisited links in blue (#0000FF), visited in magenta (#800080).
+
+** Inset Borders
+Those beveled borders created depth and dimension.
+
+#+BEGIN_SRC html
+<table border="2" cellpadding="5" cellspacing="0">
+  <tr>
+    <td bgcolor="#C0C0C0">
+      <font face="Times New Roman" size="3">
+        Retro content here
+      </font>
+    </td>
+  </tr>
+</table>
+#+END_SRC
+
+** Why Bring It Back?
+
+1. *Readability*: Clean typography without distractions
+2. *Accessibility*: Works on any browser, even text-only ones
+3. *Focus*: Content over chrome and animations
+
+The retro web reminds us that sometimes simpler is better.
+

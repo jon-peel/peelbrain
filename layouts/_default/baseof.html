@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}{{ if .Title }} - {{ .Title }}{{ end }}</title>
+    <link rel="stylesheet" href="/css/retro.css">
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1><a href="/">{{ .Site.Title }}</a></h1>
+            <hr>
+        </header>
+        <main>
+            {{ block "main" . }}{{ end }}
+        </main>
+        <footer>
+            <hr>
+            <p>&copy; {{ now.Year }} {{ .Site.Title }}</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+---
+title: "Hugo and Static Site Generation"
+date: 2026-01-18T15:30:00+03:00
+draft: false
+tags: ["hugo", "web-development", "static-sites", "go"]
+---
+
+* Hugo and Static Site Generation
+
+Static site generators have revolutionized how we build websites. Hugo is one of the fastest available.
+
+** What Makes Hugo Special?
+
+- *Speed*: Built in Go, Hugo builds sites in milliseconds
+- *Simplicity*: No database required, just markdown/org files
+- *Flexibility*: Multiple content formats and themes
+
+** Hugo Commands
+
+#+BEGIN_SRC bash
+# Create a new site
+hugo new site my-blog
+
+# Create a new post  
+hugo new content posts/my-post.org
+
+# Run development server
+hugo server --buildDrafts
+
+# Build for production
+hugo
+#+END_SRC
+
+** Benefits of Static Sites
+
+1. *Security*: No server-side processing or databases
+2. *Performance*: Serve pre-built HTML files
+3. *Cheap Hosting*: Can host on GitHub Pages, Netlify, etc.
+
+** Content Management
+
+With Hugo, content is king. Write in org-mode, markdown, or other formats, and Hugo handles the rest. The separation of content and presentation makes everything cleaner.
+

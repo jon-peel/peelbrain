@@ -1,0 +1,26 @@
+---
+title: "Test Post"
+date: 2026-01-22T12:44:26+03:00
+draft: false
+---
+
+* Test Post in Org Mode
+
+This is a test post written in org-mode format.
+
+** Features
+
+- Basic org-mode support
+- Hugo integration
+- Simple setup
+
+** Code Example
+
+#+BEGIN_SRC python
+def hello_world():
+    print("Hello, World!")
+#+END_SRC
+
+** Bold Text and *italic*
+
+This demonstrates how org-mode formatting works with Hugo.

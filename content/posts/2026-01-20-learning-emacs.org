@@ -1,0 +1,38 @@
+---
+title: "Learning Emacs"
+date: 2026-01-20T10:00:00+03:00
+draft: false
+tags: ["emacs", "text-editors", "productivity"]
+---
+
+* Learning Emacs: A Journey into Text Editing Mastery
+
+Emacs is more than just a text editor - it's a way of life. Here are some thoughts on my journey.
+
+** Why Emacs?
+
+- *Extensibility*: Emacs can be customized to do almost anything
+- *Keyboard-driven*: No need to touch the mouse once you learn the keybindings
+- *Org-mode*: The best note-taking and planning system I've ever used
+
+** Basic Commands
+
+#+BEGIN_SRC emacs-lisp
+;; My favorite Emacs configuration
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+(global-linum-mode 1)
+#+END_SRC
+
+** Learning Curve
+
+The learning curve is steep, but worth it. Start with:
+
+1. C-x C-f - Open file
+2. C-x C-s - Save file  
+3. C-x C-c - Exit Emacs
+
+** Final Thoughts
+
+Emacs has transformed how I work with text. It's like having a programmable typewriter from the future.
+

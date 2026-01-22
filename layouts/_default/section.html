@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="posts">
+    {{ if eq .Section "posts" }}
+    <h2>All Posts</h2>
+    <p>Below is a complete list of all posts on this site.</p>
+    {{ else if eq .Section "tags" }}
+    <h2>All Tags</h2>
+    <p>Below are all tags used on this site, with the number of posts for each tag.</p>
+    {{ else }}
+    <h2>{{ .Title }}</h2>
+    {{ end }}
+    
+    <div class="content">
+        {{ if .Content }}
+        {{ .Content }}
+        {{ end }}
+    </div>
+    
+    {{ if eq .Section "tags" }}
+    <div class="all-tags">
+        {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
+        <div class="tag-section">
+            <h3><a href="/tags/{{ $key | urlize }}/">{{ $key }}</a> ({{ len $taxonomy }} posts)</h3>
+            <div class="tag-posts">
+                {{ range $taxonomy }}
+                <div class="tag-post">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a> - <span class="meta">{{ .Date.Format "2006-01-02" }}</span>
+                </div>
+                {{ end }}
+            </div>
+            <hr>
+        </div>
+        {{ end }}
+    </div>
+    {{ else }}
+    <div class="all-posts">
+        {{ range .RegularPages }}
+        <div class="post-item">
+            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <p class="meta">Posted: {{ .Date.Format "2006-01-02" }}</p>
+            {{ if .Params.tags }}
+            <p class="tags">Tags: {{ range .Params.tags }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a> {{ end }}</p>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+    
+    <p><a href="/">← Back to Home</a></p>
+</div>
+{{ end }}
