@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Emacs on Peel Brain</title>
-    <link>http://localhost:1313/tags/emacs/</link>
-    <description>Recent content in Emacs on Peel Brain</description>
+    <title>Sleep on Peel Brain</title>
+    <link>http://localhost:1313/tags/sleep/</link>
+    <description>Recent content in Sleep on Peel Brain</description>
     <generator>Hugo</generator>
     <language>en-za</language>
     <lastBuildDate>Thu, 22 Jan 2026 12:44:26 +0300</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/sleep/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test Post</title>
       <link>http://localhost:1313/posts/2026-01-20-sleep-tracking-01-org-setup/</link>

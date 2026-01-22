@@ -1,7 +1,7 @@
 ---
 title: "Hugo and Static Site Generation"
 date: 2026-01-18T15:30:00+03:00
-draft: false
+draft: true
 tags: ["hugo", "web-development", "static-sites", "go"]
 ---
 

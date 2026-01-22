@@ -1,0 +1,9 @@
+---
+title: "Test Post"
+date: 2026-01-22T12:44:26+03:00
+tags: ["emacs", "org-mode", "sleep"]
+draft: false
+---
+
+I have been tracking my sleep in org-mode.
+Watch out for some updates.

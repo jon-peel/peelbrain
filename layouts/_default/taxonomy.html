@@ -4,14 +4,12 @@
     {{ if .Pages }}
     <div class="tagged-posts">
         {{ range .Pages }}
-        <div class="post-summary">
+        <div class="post-item">
             <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
             <p class="meta">Posted: {{ .Date.Format "2006-01-02" }}</p>
-            <p>{{ .Summary }}</p>
-            {{ if .Truncated }}
-            <p><a href="{{ .Permalink }}">Read more...</a></p>
+            {{ if .Params.tags }}
+            <p class="tags">Tags: {{ range .Params.tags }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a> {{ end }}</p>
             {{ end }}
-            <hr>
         </div>
         {{ end }}
     </div>
