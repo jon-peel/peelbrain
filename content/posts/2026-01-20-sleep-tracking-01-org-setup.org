@@ -5,5 +5,59 @@ tags: ["emacs", "org-mode", "sleep"]
 draft: false
 ---
 
-I have been tracking my sleep in org-mode.
-Watch out for some updates.
+I have been tracking my sleep using org-mode, to try and get a better understanding of what might affect my sleep. \\
+To be very honest though, while I have been doing this for a little over a year (adding more data points over time), I can't say I have yet seen any  pattern.
+
+* Basic setup
+
+I have a date tree configured in a file named ~diary.org~, with the various data points in the ~:PROPERTIES:~ drawer. \\
+The overview of which looks like this:
+
+
+#+CAPTION: overview of ~diary.org~ with a single date expanded
+#+BEGIN_SRC org
+,* 2024
+,* 2025
+,* 2026
+,** 2026-01-January
+,*** 2026-01-01 Thursday  :@sochi:pc:
+,*** 2026-01-02 Friday    :@sochi:
+,*** 2026-01-03 Saturday  :@sochi:
+:PROPERTIES:
+:Date:     [2026-01-03 Sat]
+:Weight:   81.25
+:Move:     990
+:Exercise: 102
+:Steps:    9932
+:Liquid:   3478
+:Calories: 2940
+:Caffeine: 372
+:Daylight: 202
+:HRV:      41
+:RHR:      64
+:Bed:      00:10
+:Up:       07:57
+:Sleep:    7:35
+:WORKOUT:  [ ]
+:END:
+#+END_SRC
+
+The tags are a note to me about:
+1. Where I was.
+2. Anything I did in the evening (On 01-01 I was working on the computer until late in the evening).
+
+* Column View
+
+org-mode allows a column view, which gives an excellent way to look at all the data in form of a table.
+
+To define the columns I want to see, I have this at the top of file (the columns match to the properties in the drawer for each date):
+
+#+CAPTION: COLUMNS definition for ~diary.org~
+#+BEGIN_SRC org
+#+COLUMNS: %20ITEM %16Date(Date) %5Weight(Wght){mean;%.2f} %10Workout{X/} %6Move(Mv){mean;%.0f} %4Exercise(Ex){mean;%.0f} %5Steps(Step){mean;%.0f} %4Liquid(H20){mean;%.0f} %4Calories(KCal){mean;%.0f} %5Caffeine(Caff){mean;%.0f} %6Daylight(Light){mean;%.0f} %3HRV{mean;%.0f} %3RHR{mean;%.0f} %4RoomTemp(Temp){mean;%.1f} %6Bed(Bed) %6Up(Up) %6Sleep(Sleep) %TAGS
+#+END_SRC
+
+Pressing @@html:<kbd>C-c C-x C-x</kbd>@@ transforms the buffer into a table.
+Arrow keys can be used to move between the cells of the table, and pressing @@html:<kbd>e</kbd>@@ allows me to edit that cell.
+This makes entering the values for each day (which I fill in the next day) very simple.
+pressing @@html:<kbd>C-c C-c</kbd>@@ will return to the usual tree view.
