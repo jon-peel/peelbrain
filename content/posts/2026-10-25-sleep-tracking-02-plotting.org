@@ -1,0 +1,147 @@
+---
+title: "Sleep Tracking in org-mode - 2. Plotting my sleep"
+date: 2026-01-22T12:44:26+03:00
+tags: ["emacs", "org-mode", "sleep", "R"]
+draft: false
+---
+
+/This is a follow up to [[file:2026-01-20-sleep-tracking-01-org-setup.org][a previous post]]./
+
+* Captured Column View
+
+org-mode has a feature called captured column view.
+This allows me to bring the column view table into another org file.
+
+In a file named ~sleep.org~ I have this (it is the last header in the file, because this is not the first thing I want to see when I open this file, and it can get very long as the years go on).
+
+#+CAPTION: a captured column view
+#+begin_src org
+,* Data
+,#+BEGIN: columnview :id "file:diary.org" :maxlevel 3 :skip-empty-rows t :match "Move>0"
+,#+NAME: raw-data
+,#+END:
+#+end_src
+
+To break down the important bits:
+- ~:id~ :: this is a reference to the file we are using as a column view. It will use the column view defined
+ at the top of that file to layout the columns here, so they don't need to be specified again.
+- ~:maxlevel:~ :: This says only go as far as the ~***~ level. That is where all the data we want is, so if I add a fourth level it will not bring it in here.
+- ~:match~ :: This is a filter. The column view will bring in levels one and two as well, so by filtering on only records with a move value I will only have the rows with actual data.  The decision to have this on ~move~ is random, it could be anything.
+
+Pressing @@html:<kbd>C-c C-c</kbd>@@ on the ~#+BEGIN:~ line will load the table from ~diary.org~.
+This must be done manually.  It is not done automatically like code blocks.
+
+* Data cleaning
+
+I have a code block that "cleans" the data. \\
+This does a few things, and will be expanded as I want to plot more data points:
+- Extracts the year from the date.
+- Extracts the location from the tags.
+- Converts hours from ~HH:mm~ to a decimal.
+
+I a using R
+[fn::: R is not a language I am very familiar with, so these were done with the assistance of an LLM. Especially with the tidyverse plugin, I did enjoy playing with the data and R is a langiage I am planning on putting a bit of time into learning properly.]
+for this. \\
+
+What I like about R is that it references table columns by name.
+That means, when I add another column (e.g. when I added Year to this output) I didn't need to update the column indexes on all the other code blocks.
+
+
+#+CAPTION: The ~clean-data~ code block.
+#+begin_src org
+#+NAME: clean-data
+#+begin_src R :var data=raw-data :results value table :colnames yes :exports none
+library(tidyverse)
+decTime <- function(x) {
+  hour <- as.numeric(str_extract(x, "\\d+"))
+  min <- as.numeric(str_extract(x, "\\d+$"))
+  total <- hour + (min / 60)
+  round(total, 2)
+}
+
+location <- function(x) {
+  if (length(x) > 1) {
+    return(sapply(x, location))
+  }
+
+  locations <- c("@sochi", "@alberton", "@clarens", "@moscow", "@kruger", "@nizhny", "@air")
+  names <- c("Sochi", "Alberton", "Clarens", "Moscow", "Kruger", "Nizhny", "Air")
+  idx <- which(sapply(locations, function(pattern) grepl(pattern, x)))
+  if (length(idx) > 0) names[idx] else "Unknown"
+}
+
+data %>%
+  mutate (Hours = decTime(Sleep)) %>%
+  mutate (Year = substr(Date, 2, 5)) %>%
+  mutate (Location = location(TAGS)) %>%
+  filter(Hours > 0) %>%
+  select (Year, Date, Location, Caff, Hours)
+,#+end_src
+#+end_src
+
+The name on top of this block is very important, because it allows the results of this block to be used as a table in another block.
+
+* Visualization
+
+I have a few more R code blacks that export charts. Here are a few of them.
+
+** Histogram
+
+This is a quick visualization of how many nights I have slept how many hours.
+
+#+begin_src
+#+begin_src R :var data=clean-data :results output graphics file :file hours_histogram.png :width 996 :height 500 :exports results
+library(ggplot2)
+ggplot(data, aes(x = data$Hours )) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  scale_x_continuous(breaks = 0:10) +
+  scale_y_log10() +
+  labs(title = "Distribution of Hours",
+       x = "Hours Slept",
+       y = "") +
+  theme_minimal()
+,#+end_src
+#+end_src
+
+** Scatter plot
+
+I want to see if caffeine has an impact on my sleep, so I will use a scatter plot.
+
+#+begin_src org
+,#+begin_src R :var data=clean-data :results output graphics file :file caffeine_sleep_scatter.png :width 600 :height 400 :exports results
+library(ggplot2)
+
+# Calculate correlation coefficient
+correlation <- cor(data$Caff, data$Hours, use = "complete.obs")
+
+# Create scatter plot with trend line (Caffeine on X, Sleep on Y)
+ggplot(data, aes(x = Caff, y = Hours)) +
+  geom_point(alpha = 0.6, color = "steelblue", size = 2) +
+  geom_smooth(method = "lm", se = TRUE, color = "red", alpha = 0.3) +
+  labs(title = paste("Caffeine vs Sleep Hours (Correlation:", round(correlation, 2), ")"),
+       x = "Caffeine (mg)",
+       y = "Sleep Hours") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+,#+end_src
+#+end_src
+
+** Box plot
+
+I want to see if I sleep a better or worse in different locations.
+A box plot can show me not only the average sleep by location, but also the range.
+
+#+begin_src org
+,#+begin_src R :var data=clean-data :results output graphics file :file hours_boxplot.png :width 996 :height 400 :exports results
+library(ggplot2)
+ggplot(data, aes(x = Location, y = Hours)) +
+  geom_boxplot(fill = "skyblue", alpha = 0.7) +
+  labs(title = "Hours Distribution by Location",
+       x = "Location",
+       y = "Hours") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+,#+end_src
+#+end_src
+
+
