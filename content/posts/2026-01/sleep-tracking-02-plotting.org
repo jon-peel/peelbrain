@@ -103,7 +103,7 @@ ggplot(data, aes(x = data$Hours )) +
 #+end_src
 
 #+CAPTION: Distribution of sleep hours showing frequency of different sleep durations
-[[file:hours_histogram.png]]
+[[./sleep-tracking-02-plotting/hours_histogram.png]]
 
 ** Scatter plot
 
@@ -130,7 +130,7 @@ ggplot(data, aes(x = Caff, y = Hours)) +
 #+end_src
 
 #+CAPTION: Relationship between caffeine intake and sleep hours with correlation trend line
-[[./caffeine_sleep_scatter.png]]
+[[./sleep-tracking-02-plotting/caffeine_sleep_scatter.png]]
 
 ** Box plot
 
@@ -152,4 +152,4 @@ ggplot(data, aes(x = Location, y = Hours)) +
 #+end_src
 
 #+CAPTION: Sleep hours variation across different locations with median and quartile ranges
-[[./hours_boxplot.png]]
+[[./sleep-tracking-02-plotting/hours_boxplot.png]]
