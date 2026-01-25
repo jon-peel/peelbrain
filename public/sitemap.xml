@@ -3,22 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/tags/emacs/</loc>
-    <lastmod>2026-01-22T12:44:26+03:00</lastmod>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/org-mode/</loc>
-    <lastmod>2026-01-22T12:44:26+03:00</lastmod>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-01-22T12:44:26+03:00</lastmod>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-01-22T12:44:26+03:00</lastmod>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/r/</loc>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/sleep/</loc>
-    <lastmod>2026-01-22T12:44:26+03:00</lastmod>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/2026-01/2026-10-25-sleep-tracking-02-plotting/</loc>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-01-22T12:44:26+03:00</lastmod>
+    <lastmod>2026-01-25T09:21:00+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/2026-01-20-sleep-tracking-01-org-setup/</loc>
     <lastmod>2026-01-22T12:44:26+03:00</lastmod>

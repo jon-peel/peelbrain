@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
-    <title>Peel Brain - Test Post</title>
+    <title>Peel Brain - Sleep Tracking in org-mode - 1. The Setup</title>
     <link rel="stylesheet" href="/css/retro.css">
 </head>
 <body>
@@ -22,15 +22,87 @@
         <main>
             
 <div class="post">
-    <h2>Test Post</h2>
+    <h2>Sleep Tracking in org-mode - 1. The Setup</h2>
     <p class="meta">Posted: 2026-01-22</p>
     
     <p class="tags">Tags: <a href="/tags/emacs/">emacs</a> <a href="/tags/org-mode/">org-mode</a> <a href="/tags/sleep/">sleep</a> </p>
     
     <div class="content">
-        <p>
-I have been tracking my sleep in org-mode.
-Watch out for some updates.</p>
+        
+<p>
+I have been tracking my sleep using org-mode, to try and get a better understanding of what might affect my sleep. <br>
+To be very honest though, while I have been doing this for a little over a year (adding more data points over time), I can&#39;t say I have yet seen any pattern.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Basic setup
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>
+I have a date tree configured in a file named <code>diary.org</code>, with the various data points in the <code>:PROPERTIES:</code> drawer. <br>
+The overview of which looks like this:</p>
+<figure>
+<div class="src src-org">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-org" data-lang="org"><span style="display:flex;"><span>*<span style="font-weight:bold"> 2024</span>
+</span></span><span style="display:flex;"><span>*<span style="font-weight:bold"> 2025</span>
+</span></span><span style="display:flex;"><span>*<span style="font-weight:bold"> 2026</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**</span> 2026-01-January
+</span></span><span style="display:flex;"><span><span style="color:#75715e">***</span> 2026-01-01 Thursday <span style="font-style:italic"> :@sochi:pc:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">***</span> 2026-01-02 Friday   <span style="font-style:italic"> :@sochi:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">***</span> 2026-01-03 Saturday <span style="font-style:italic"> :@sochi:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">:PROPERTIES:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Date:     [2026-01-03 Sat]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Weight:   81.25
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Move:     990
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Exercise: 102
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Steps:    9932
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Liquid:   3478
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Calories: 2940
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Caffeine: 372
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Daylight: 202
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:HRV:      41
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:RHR:      64
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Bed:      00:10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Up:       07:57
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:Sleep:    7:35
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:WORKOUT:  [ ]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">:END:</span></span></span></code></pre></div>
+</div>
+<figcaption>
+Example diary.org structure with expanded date entry
+</figcaption>
+</figure>
+<p>
+The tags are reminders of:</p>
+<ol>
+<li>Where I was.</li>
+<li>Anything I did in the evening (On 01-01 I was working on the computer until late in the evening).</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+Column View
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>
+org-mode allows a column view, which gives an excellent way to look at all the data in the form of a table.</p>
+<p>
+To define the columns I want to see, I have this at the top of file (the columns match to the properties in the drawer for each date):</p>
+<figure>
+<div class="src src-org">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-org" data-lang="org"><span style="display:flex;"><span><span style="color:#75715e">#+COLUMNS</span><span style="color:#75715e">: %20ITEM %16Date(Date) %5Weight(Wght){mean;%.2f} %10Workout{X/} %6Move(Mv){mean;%.0f} %4Exercise(Ex){mean;%.0f} %5Steps(Step){mean;%.0f} %4Liquid(H20){mean;%.0f} %4Calories(KCal){mean;%.0f} %5Caffeine(Caff){mean;%.0f} %6Daylight(Light){mean;%.0f} %3HRV{mean;%.0f} %3RHR{mean;%.0f} %4RoomTemp(Temp){mean;%.1f} %6Bed(Bed) %6Up(Up) %6Sleep(Sleep) %TAGS</span></span></span></code></pre></div>
+</div>
+<figcaption>
+org-mode column view configuration for diary entries
+</figcaption>
+</figure>
+<p>
+Pressing <kbd>C-c C-x C-x</kbd> transforms the buffer into a table.
+Arrow keys can be used to move between the cells of the table, and pressing <kbd>e</kbd> allows me to edit that cell.
+This makes entering the values for each day (which I fill in the next day) very straightforward.
+pressing <kbd>C-c C-c</kbd> will return to the usual tree view.</p>
+</div>
+</div>
 
     </div>
 </div>
