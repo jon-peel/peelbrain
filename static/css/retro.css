@@ -323,9 +323,22 @@ footer p {
 
 /* Images in posts */
 .content img {
-    max-width: 686px;
+    max-width: 100%;
     border: 1px solid #000000;
     height: auto;
+}
+
+.content figure {
+    max-width: 100%;
+    margin: 10px 0;
+}
+
+.content figcaption {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #666666;
+    text-align: center;
+    margin-top: 0;
 }
 
 /* Footnotes */
@@ -490,7 +503,12 @@ kbd {
     }
     
     .content img {
+        max-width: 100%;
         border: 1px solid #E0E0E0;
+    }
+    
+    .content figcaption {
+        color: #A0A0A0;
     }
     
     .footnote-definition {
