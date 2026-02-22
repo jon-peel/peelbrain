@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        .bg     { fill: #2D2D2D; }
+        .brain  { fill: #6B9BD1; }
+        .groove { stroke: #2D2D2D; }
+      }
+    </style>
+  </defs>
+
+  <!-- Silver background -->
+  <rect class="bg" width="32" height="32" fill="#C0C0C0" rx="2"/>
+
+  <!-- Left hemisphere -->
+  <path class="brain" fill="#000080"
+    d="M16,9 C14,6 9,6 7,9 C4,9 2,12 3,15 C2,18 4,23 7,24 L16,24 Z"/>
+
+  <!-- Right hemisphere -->
+  <path class="brain" fill="#000080"
+    d="M16,9 C18,6 23,6 25,9 C28,9 30,12 29,15 C30,18 28,23 25,24 L16,24 Z"/>
+
+  <!-- Brain stem -->
+  <rect class="brain" fill="#000080" x="14" y="24" width="4" height="3" rx="1"/>
+
+  <!-- Left sulci (wrinkles) -->
+  <path class="groove" stroke="#C0C0C0" stroke-width="1.2" fill="none" stroke-linecap="round"
+    d="M9,10 Q7,13 8,17"/>
+  <path class="groove" stroke="#C0C0C0" stroke-width="1.2" fill="none" stroke-linecap="round"
+    d="M5,18 Q5,21 8,23"/>
+
+  <!-- Right sulci (wrinkles) -->
+  <path class="groove" stroke="#C0C0C0" stroke-width="1.2" fill="none" stroke-linecap="round"
+    d="M23,10 Q25,13 24,17"/>
+  <path class="groove" stroke="#C0C0C0" stroke-width="1.2" fill="none" stroke-linecap="round"
+    d="M27,18 Q27,21 24,23"/>
+
+  <!-- Longitudinal fissure (centre line between hemispheres) -->
+  <line class="groove" x1="16" y1="9" x2="16" y2="24" stroke="#C0C0C0" stroke-width="1.5"/>
+</svg>
