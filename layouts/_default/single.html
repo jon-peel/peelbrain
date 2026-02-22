@@ -1,12 +1,12 @@
 {{ define "main" }}
-<div class="post">
+<article>
     <h2>{{ .Title }}</h2>
     <p class="meta">Posted: {{ .Date.Format "2006-01-02" }}</p>
     {{ if .Params.tags }}
-    <p class="tags">Tags: {{ range .Params.tags }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a> {{ end }}</p>
+    <ul class="tags">
+        {{ range .Params.tags }}<li><a href="/tags/{{ . | urlize }}/" class="tag-link">{{ . }}</a></li>{{ end }}
+    </ul>
     {{ end }}
-    <div class="content">
-        {{ .Content }}
-    </div>
-</div>
+    {{ .Content }}
+</article>
 {{ end }}

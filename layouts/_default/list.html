@@ -1,50 +1,41 @@
 {{ define "main" }}
-<div class="posts">
     <!-- Latest Post Preview -->
     {{ $latestPost := index .Site.RegularPages 0 }}
     {{ if $latestPost }}
-    <div class="latest-post">
-        <h2>Latest Post</h2>
-        <div class="post-preview">
-            <h3><a href="{{ $latestPost.Permalink }}">{{ $latestPost.Title }}</a></h3>
-            <p class="meta">Posted: {{ $latestPost.Date.Format "2006-01-02" }}</p>
-            <div class="content">{{ $latestPost.Summary }}</div>
-            {{ if $latestPost.Truncated }}
-            <p><a href="{{ $latestPost.Permalink }}">Read more...</a></p>
-            {{ end }}
-        </div>
-        <hr>
-    </div>
+    <h2>Latest Post</h2>
+    <article class="latest-post">
+        <h3><a href="{{ $latestPost.Permalink }}">{{ $latestPost.Title }}</a></h3>
+        <p class="meta">Posted: {{ $latestPost.Date.Format "2006-01-02" }}</p>
+        {{ $latestPost.Summary }}
+        {{ if $latestPost.Truncated }}
+        <p><a href="{{ $latestPost.Permalink }}">Read more...</a></p>
+        {{ end }}
+    </article>
+    <hr>
     {{ end }}
 
     <!-- Next 9 Posts List -->
     {{ $nextPosts := after 1 .Site.RegularPages }}
     {{ $nextPosts = first 9 $nextPosts }}
     {{ if $nextPosts }}
-    <div class="recent-posts">
-        <h2>Recent Posts</h2>
+    <h2>Recent Posts</h2>
+    <ul class="post-list">
         {{ range $nextPosts }}
-        <div class="post-item">
-            <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
-            <p class="meta">{{ .Date.Format "2006-01-02" }}</p>
-        </div>
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <span class="meta">{{ .Date.Format "2006-01-02" }}</span>
+        </li>
         {{ end }}
-    </div>
+    </ul>
     {{ end }}
 
-    <!-- All Posts Link -->
-    <div class="navigation-links">
-        <p style="text-align: left;"><a href="/posts/">← All Posts</a></p>
-        <hr>
-    </div>
+    <p><a href="/posts/">← All Posts</a></p>
+    <hr>
 
     <!-- Popular Tags -->
-    <div class="tags-section">
-        <h3>Popular Tags</h3>
-        {{ range .Site.Taxonomies.tags }}
-        <a href="{{ .Page.Permalink }}" class="tag-link">{{ .Page.Title }} ({{ len . }})</a>
-        {{ end }}
-        <p><a href="/tags/">← All Tags</a></p>
-    </div>
-</div>
+    <h3>Popular Tags</h3>
+    {{ range .Site.Taxonomies.tags }}
+    <a href="{{ .Page.Permalink }}" class="tag-link">{{ .Page.Title }} ({{ len . }})</a>
+    {{ end }}
+    <p><a href="/tags/">← All Tags</a></p>
 {{ end }}

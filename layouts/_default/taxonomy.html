@@ -1,22 +1,17 @@
 {{ define "main" }}
-<div class="posts">
     <h2>Posts tagged with "{{ .Title }}"</h2>
     {{ if .Pages }}
-    <div class="tagged-posts">
+    <ul class="post-list">
         {{ range .Pages }}
-        <div class="post-item">
-            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            <p class="meta">Posted: {{ .Date.Format "2006-01-02" }}</p>
-            {{ if .Params.tags }}
-            <p class="tags">Tags: {{ range .Params.tags }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a> {{ end }}</p>
-            {{ end }}
-        </div>
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <span class="meta">{{ .Date.Format "2006-01-02" }}</span>
+        </li>
         {{ end }}
-    </div>
+    </ul>
     {{ else }}
     <p>No posts found with this tag.</p>
     {{ end }}
-    
+
     <p><a href="/tags/">← Back to All Tags</a></p>
-</div>
 {{ end }}
