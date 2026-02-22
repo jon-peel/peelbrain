@@ -6,6 +6,10 @@ taxonomies:
   tag: tags
   category: categories
 
+outputFormats:
+  RSS:
+    baseName: rss
+
 markup:
   goldmark:
     renderer:
