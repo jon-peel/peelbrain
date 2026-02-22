@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Peel Brain – HTML Preview</title>
+    <style>
+
+/* ============================================================
+   PREVIEW CHROME  (not part of site)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #666;
+}
+
+.preview-bar {
+    background: #1a1a1a;
+    color: #eee;
+    padding: 8px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    font-family: monospace;
+    font-size: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.preview-bar span { color: #888; }
+.preview-bar a { color: #7ecfff; text-decoration: none; }
+.preview-bar a:hover { text-decoration: underline; }
+
+.preview-wrapper { padding: 24px 16px; }
+
+.preview-item { margin-bottom: 48px; }
+
+.preview-label {
+    font-family: monospace;
+    font-size: 11px;
+    color: #fff;
+    background: #444;
+    display: inline-block;
+    padding: 3px 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   SITE CSS — SIMPLIFIED
+   Scoped to .site so two pages can sit in one preview file.
+   In production this would apply to body/html directly.
+   ============================================================ */
+
+.site {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    color: #000;
+    background-color: #C0C0C0;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid;
+    border-color: #FFFFFF #808080 #808080 #FFFFFF;
+}
+
+/* Header */
+.site header h1 {
+    font-size: 24px;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+}
+.site header h1 a { text-decoration: none; color: #000080; }
+.site header h1 a:hover { text-decoration: underline; }
+
+.site nav { text-align: center; margin: 10px 0; }
+.site nav a { color: #0000FF; text-decoration: none; font-size: 14px; }
+.site nav a:hover { text-decoration: underline; }
+
+.site hr { border: 1px inset #808080; height: 2px; margin: 10px 0; }
+
+/* Main content area */
+.site main {
+    background-color: #FFF;
+    border: 2px inset #C0C0C0;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* Footer */
+.site footer { text-align: center; font-size: 14px; color: #808080; margin-top: 20px; }
+.site footer p { margin: 5px 0; }
+.site .made-with { font-size: 22px; line-height: 22px; }
+
+/* Links */
+.site a { color: #0000FF; text-decoration: none; }
+.site a:visited { color: #800080; }
+.site a:hover { text-decoration: underline; }
+.site a:active { color: #FF0000; }
+
+/* Headings */
+.site h1, .site h2, .site h3,
+.site h4, .site h5, .site h6 { color: #000080; font-weight: bold; }
+.site h1 { font-size: 24px; }
+.site h2 { font-size: 20px; }
+.site h3 { font-size: 16px; margin-bottom: 5px; }
+.site h4 { font-size: 14px; }
+
+.site p { line-height: 1.6; }
+
+.site .meta { font-style: italic; color: #808080; font-size: 12px; margin: 5px 0; }
+
+/* Code */
+.site pre {
+    background-color: #E0E0E0;
+    border: 1px inset #808080;
+    padding: 10px;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+.site code { font-family: "Courier New", monospace; font-size: 12px; }
+
+/* General lists */
+.site ul, .site ol { margin-left: 20px; }
+.site li { margin: 5px 0; }
+
+/* Post list — replaces div.post-item wrappers */
+.site .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.site .post-list li {
+    margin: 0;
+    padding: 6px 0;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+}
+.site .post-list li:last-child { border-bottom: none; }
+.site .post-list li a { flex: 1; }
+
+/* Article — replaces div.post */
+.site article > h2 {
+    font-size: 20px;
+    color: #000080;
+    border-bottom: 2px solid #000080;
+    margin-bottom: 10px;
+}
+
+/* Latest post preview — replaces div.latest-post > div.post-preview */
+.site article.latest-post {
+    background-color: #F0F0F0;
+    border: 2px inset #C0C0C0;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+/* Org-mode heading scoping — was .content .outline-*, now article .outline-* */
+.site article .outline-2 h2 { font-size: 16px; margin-bottom: 5px; }
+.site article .outline-3 h3 { font-size: 14px; margin-bottom: 5px; }
+
+/* Tags — replaces <p class="tags">Tags: ...</p> */
+.site ul.tags {
+    list-style: none;
+    margin: 5px 0 10px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.site ul.tags li { margin: 0; }
+
+.site .tag-link {
+    display: inline-block;
+    background-color: #E0E0E0;
+    border: 1px solid #808080;
+    padding: 3px 8px;
+    margin: 2px 5px 2px 0;
+    color: #000080;
+    text-decoration: none;
+    font-size: 12px;
+}
+.site .tag-link:hover { background-color: #D0D0D0; text-decoration: underline; }
+
+/* Images */
+.site article img { max-width: 100%; border: 1px solid #000; height: auto; }
+.site article figure { max-width: 100%; margin: 10px 0; }
+.site article figcaption {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #666;
+    text-align: center;
+    margin-top: 0;
+}
+
+/* Keyboard shortcuts */
+.site kbd {
+    background-color: #E0E0E0;
+    border: 2px outset #C0C0C0;
+    padding: 2px 6px;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    margin: 0 2px;
+    display: inline-block;
+}
+
+/* Footnotes */
+.site .footnote-definition { display: flex; align-items: flex-start; margin: 10px 0; font-size: 12px; }
+.site .footnote-definition sup { margin-right: 5px; flex-shrink: 0; }
+.site .footnote-body p { margin: 0; }
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+    body { background: #555; }
+
+    .site {
+        background-color: #2D2D2D;
+        color: #E0E0E0;
+        border-color: #606060 #1A1A1A #1A1A1A #606060;
+    }
+    .site main { background-color: #1A1A1A; border: 2px inset #404040; }
+    .site header h1 a { color: #6B9BD1; }
+    .site nav a { color: #7BA7E7; }
+    .site a { color: #7BA7E7; }
+    .site a:visited { color: #B19CD9; }
+    .site h1, .site h2, .site h3,
+    .site h4, .site h5, .site h6 { color: #6B9BD1; }
+    .site article > h2 { color: #6B9BD1; border-bottom-color: #6B9BD1; }
+    .site article.latest-post { background-color: #1F1F1F; border: 2px inset #404040; }
+    .site pre { background-color: #1F1F1F; border: 1px inset #404040; }
+    .site .tag-link { background-color: #1F1F1F; border-color: #404040; color: #6B9BD1; }
+    .site .tag-link:hover { background-color: #2A2A2A; }
+    .site hr { border: 1px inset #404040; }
+    .site .meta { color: #A0A0A0; }
+    .site footer { color: #A0A0A0; }
+    .site .post-list li { border-bottom-color: #333; }
+    .site article img { border-color: #E0E0E0; }
+    .site article figcaption { color: #A0A0A0; }
+    .site kbd { background-color: #1F1F1F; border: 2px outset #404040; color: #E0E0E0; }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="preview-bar">
+    <span>Preview:</span>
+    <a href="#home">Home</a>
+    <a href="#post">Single Post</a>
+    <a href="#all-posts">All Posts</a>
+    <a href="#all-tags">All Tags</a>
+</div>
+
+<div class="preview-wrapper">
+
+    <!-- ================================================
+         PAGE 1: HOME
+         ================================================ -->
+    <div class="preview-item" id="home">
+        <div class="preview-label">Home Page</div>
+        <div class="site">
+            <header>
+                <h1><a href="#">Peel Brain</a></h1>
+                <nav>
+                    <a href="#">Home</a> |
+                    <a href="#">Posts</a> |
+                    <a href="#">Tags</a> |
+                    <a href="#">RSS</a>
+                </nav>
+                <hr>
+            </header>
+            <main>
+                <h2>Latest Post</h2>
+                <article class="latest-post">
+                    <h3><a href="#">Setting Up Org-Mode for Sleep Tracking</a></h3>
+                    <p class="meta">Posted: 2026-01-20</p>
+                    <p>I've been experimenting with using Emacs org-mode to track my sleep patterns.
+                    The combination of org-mode's property drawers and date-tree structure makes
+                    it surprisingly powerful for this kind of quantified-self work...</p>
+                    <p><a href="#">Read more →</a></p>
+                </article>
+                <hr>
+
+                <h2>Recent Posts</h2>
+                <ul class="post-list">
+                    <li>
+                        <a href="#">Hugo Static Sites: Why I Switched from WordPress</a>
+                        <span class="meta">2026-01-18</span>
+                    </li>
+                    <li>
+                        <a href="#">The Joy of Retro Web Design</a>
+                        <span class="meta">2026-01-15</span>
+                    </li>
+                    <li>
+                        <a href="#">Learning Emacs: A Beginner's Journey</a>
+                        <span class="meta">2026-01-10</span>
+                    </li>
+                    <li>
+                        <a href="#">Visualising Sleep Data with Python</a>
+                        <span class="meta">2026-01-05</span>
+                    </li>
+                </ul>
+                <p><a href="#">← All Posts</a></p>
+                <hr>
+
+                <h3>Popular Tags</h3>
+                <a href="#" class="tag-link">emacs (4)</a>
+                <a href="#" class="tag-link">org-mode (3)</a>
+                <a href="#" class="tag-link">hugo (2)</a>
+                <a href="#" class="tag-link">python (2)</a>
+                <a href="#" class="tag-link">retro-web (1)</a>
+                <p><a href="#">← All Tags</a></p>
+            </main>
+            <footer>
+                <hr>
+                <p>&copy; 2026 Peel Brain</p>
+                <p class="made-with">RSS | Emacs | Org | Hugo</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ================================================
+         PAGE 2: SINGLE POST
+         ================================================ -->
+    <div class="preview-item" id="post">
+        <div class="preview-label">Single Post</div>
+        <div class="site">
+            <header>
+                <h1><a href="#">Peel Brain</a></h1>
+                <nav>
+                    <a href="#">Home</a> |
+                    <a href="#">Posts</a> |
+                    <a href="#">Tags</a> |
+                    <a href="#">RSS</a>
+                </nav>
+                <hr>
+            </header>
+            <main>
+                <article>
+                    <h2>Setting Up Org-Mode for Sleep Tracking</h2>
+                    <p class="meta">Posted: 2026-01-20</p>
+                    <ul class="tags">
+                        <li><a href="#" class="tag-link">emacs</a></li>
+                        <li><a href="#" class="tag-link">org-mode</a></li>
+                        <li><a href="#" class="tag-link">quantified-self</a></li>
+                    </ul>
+
+                    <p>I've been experimenting with using Emacs org-mode to track my sleep patterns.
+                    The combination of org-mode's property drawers and date-tree structure makes
+                    it surprisingly powerful for this kind of quantified-self work.</p>
+
+                    <!-- Simulated org-mode rendered content -->
+                    <div class="outline-2">
+                        <h2>Why Org-Mode?</h2>
+                        <p>Most sleep tracking apps are black boxes. I wanted something I could
+                        query, export, and analyse with my own tools. Org-mode gives me
+                        structured data in plain text — I can write <code>awk</code> scripts,
+                        Python notebooks, or SQL queries against it.</p>
+                    </div>
+
+                    <div class="outline-2">
+                        <h2>The Basic Structure</h2>
+                        <p>Here's the property drawer I use for each night:</p>
+                        <pre>** 2026-01-19 Mon
+   :PROPERTIES:
+   :SLEEP:    23:00
+   :WAKE:     07:30
+   :QUALITY:  4
+   :NOTES:    Too much coffee after 3pm
+   :END:</pre>
+                        <p>The key bindings <kbd>C-c C-x p</kbd> and <kbd>C-c C-x o</kbd>
+                        make it quick to log entries without breaking flow.</p>
+                    </div>
+
+                    <div class="outline-2">
+                        <h2>Querying the Data</h2>
+                        <p>Using org's column view, you can get a tabular summary without
+                        leaving Emacs. For deeper analysis I export to CSV and run a short
+                        Python script to plot trends.</p>
+
+                        <div class="outline-3">
+                            <h3>Column View Setup</h3>
+                            <p>Add this to the top of your file:</p>
+                            <pre>#+COLUMNS: %25ITEM %SLEEP %WAKE %QUALITY</pre>
+                            <p>Then <kbd>C-c C-x C-c</kbd> gives you a live spreadsheet view.</p>
+                        </div>
+                    </div>
+                </article>
+                <p><a href="#">← All Posts</a></p>
+            </main>
+            <footer>
+                <hr>
+                <p>&copy; 2026 Peel Brain</p>
+                <p class="made-with">RSS | Emacs | Org | Hugo</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ================================================
+         PAGE 3: ALL POSTS
+         ================================================ -->
+    <div class="preview-item" id="all-posts">
+        <div class="preview-label">All Posts</div>
+        <div class="site">
+            <header>
+                <h1><a href="#">Peel Brain</a></h1>
+                <nav>
+                    <a href="#">Home</a> |
+                    <a href="#">Posts</a> |
+                    <a href="#">Tags</a> |
+                    <a href="#">RSS</a>
+                </nav>
+                <hr>
+            </header>
+            <main>
+                <h2>All Posts</h2>
+                <p>A complete list of all posts on this site.</p>
+                <ul class="post-list">
+                    <li>
+                        <a href="#">Setting Up Org-Mode for Sleep Tracking</a>
+                        <span class="meta">2026-01-20</span>
+                    </li>
+                    <li>
+                        <a href="#">Hugo Static Sites: Why I Switched from WordPress</a>
+                        <span class="meta">2026-01-18</span>
+                    </li>
+                    <li>
+                        <a href="#">The Joy of Retro Web Design</a>
+                        <span class="meta">2026-01-15</span>
+                    </li>
+                    <li>
+                        <a href="#">Learning Emacs: A Beginner's Journey</a>
+                        <span class="meta">2026-01-10</span>
+                    </li>
+                    <li>
+                        <a href="#">Visualising Sleep Data with Python</a>
+                        <span class="meta">2026-01-05</span>
+                    </li>
+                </ul>
+                <p><a href="#">← Back to Home</a></p>
+            </main>
+            <footer>
+                <hr>
+                <p>&copy; 2026 Peel Brain</p>
+                <p class="made-with">RSS | Emacs | Org | Hugo</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ================================================
+         PAGE 4: ALL TAGS
+         ================================================ -->
+    <div class="preview-item" id="all-tags">
+        <div class="preview-label">All Tags</div>
+        <div class="site">
+            <header>
+                <h1><a href="#">Peel Brain</a></h1>
+                <nav>
+                    <a href="#">Home</a> |
+                    <a href="#">Posts</a> |
+                    <a href="#">Tags</a> |
+                    <a href="#">RSS</a>
+                </nav>
+                <hr>
+            </header>
+            <main>
+                <h2>All Tags</h2>
+                <p>All tags used on this site, with post counts.</p>
+
+                <h3><a href="#">emacs</a> (4 posts)</h3>
+                <ul class="post-list">
+                    <li><a href="#">Setting Up Org-Mode for Sleep Tracking</a> <span class="meta">2026-01-20</span></li>
+                    <li><a href="#">Learning Emacs: A Beginner's Journey</a> <span class="meta">2026-01-10</span></li>
+                </ul>
+                <hr>
+
+                <h3><a href="#">org-mode</a> (3 posts)</h3>
+                <ul class="post-list">
+                    <li><a href="#">Setting Up Org-Mode for Sleep Tracking</a> <span class="meta">2026-01-20</span></li>
+                    <li><a href="#">Visualising Sleep Data with Python</a> <span class="meta">2026-01-05</span></li>
+                </ul>
+                <hr>
+
+                <h3><a href="#">hugo</a> (2 posts)</h3>
+                <ul class="post-list">
+                    <li><a href="#">Hugo Static Sites: Why I Switched from WordPress</a> <span class="meta">2026-01-18</span></li>
+                    <li><a href="#">The Joy of Retro Web Design</a> <span class="meta">2026-01-15</span></li>
+                </ul>
+                <hr>
+
+                <p><a href="#">← Back to Home</a></p>
+            </main>
+            <footer>
+                <hr>
+                <p>&copy; 2026 Peel Brain</p>
+                <p class="made-with">RSS | Emacs | Org | Hugo</p>
+            </footer>
+        </div>
+    </div>
+
+</div><!-- /preview-wrapper -->
+</body>
+</html>
