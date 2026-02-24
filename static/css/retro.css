@@ -145,6 +145,11 @@ a:active {
     color: #FF0000;
 }
 
+a:focus {
+    outline: 2px solid #000080;
+    outline-offset: 2px;
+}
+
 /* Code blocks */
 pre {
     background-color: #E0E0E0;
@@ -233,6 +238,23 @@ footer a {
 
 .browser-logo:hover {
     opacity: 1;
+}
+
+/* Skip navigation link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: #000080;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    font-size: 14px;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 /* Tags — ul.tags with li > a.tag-link */
@@ -353,6 +375,15 @@ kbd {
 
     a:visited {
         color: #B19CD9;
+    }
+
+    a:focus {
+        outline-color: #7BA7E7;
+    }
+
+    .skip-link {
+        background: #1A4A7A;
+        color: #E0E0E0;
     }
 
     h1, h2, h3, h4, h5, h6 {

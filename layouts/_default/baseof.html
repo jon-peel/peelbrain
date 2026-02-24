@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/css/retro.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
     <header>
         <h1><a href="/">{{ .Site.Title }}</a></h1>
         <nav>
@@ -30,7 +31,7 @@
         </nav>
         <hr>
     </header>
-    <main>
+    <main id="main">
         {{ block "main" . }}{{ end }}
     </main>
     <footer>
