@@ -8,7 +8,7 @@
         <p class="meta">Posted: {{ $latestPost.Date.Format "2006-01-02" }}</p>
         {{ $latestPost.Summary }}
         {{ if $latestPost.Truncated }}
-        <p><a href="{{ $latestPost.Permalink }}">Read more...</a></p>
+        <p><a href="{{ $latestPost.Permalink }}" aria-label="Read more about {{ $latestPost.Title }}">Read more...</a></p>
         {{ end }}
     </article>
     <hr>
